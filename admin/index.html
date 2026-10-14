@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AVOLI Admin — easy updates</title><link rel="icon" href="../assets/logo.svg"><link rel="stylesheet" href="../css/style.css">
+<style>.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tabpane{display:none}.tabpane.on{display:block}textarea.code{font-family:Consolas,monospace;font-size:.8rem;min-height:220px}.two{display:grid;gap:12px}@media(min-width:860px){.two{grid-template-columns:1fr 1fr}}</style></head>
+<body><header class="site-header"><div class="container header-inner">
+<a class="brand" href="../index.html"><img class="brand-mark" src="../assets/logo.svg" alt=""><span class="brand-text"><strong>AVOLI Admin</strong><small>Easy panel — no coding</small></span></a>
+<button class="nav-toggle">☰ Menu</button><nav class="main-nav"><ul><li><a href="../index.html">← View site</a></li></ul></nav></div></header>
+<main><div class="page-hero"><div class="container"><h1>Update Projects, News, Events, Photos, Programmes & Team</h1><p>Fill a form → copy the generated text → paste into the matching <code>data/*.json</code> file → upload. Works offline; nothing breaks the live site until you save.</p></div></div>
+<section class="block"><div class="container">
+<div class="tabs" id="tabs">
+<button class="chip on" data-t="site">Site & Contact</button>
+<button class="chip" data-t="projects">Projects</button>
+<button class="chip" data-t="news">News</button>
+<button class="chip" data-t="programmes">Programmes</button>
+<button class="chip" data-t="gallery">Gallery</button>
+<button class="chip" data-t="guide">Guide</button>
+</div>
+<div class="tabpane on" id="pane-site"><div class="two">
+<form class="fieldset" id="f-site"><h3>Contact, bank & socials</h3>
+<label>Email<input id="s-email"></label><label>Phone<input id="s-phone"></label><label>Address<input id="s-address"></label>
+<label>Bank name<input id="s-bank"></label><label>Account name<input id="s-accname"></label><label>Account number<input id="s-accno"></label>
+<label>Instagram<input id="s-ig"></label><label>Facebook<input id="s-fb"></label><label>LinkedIn<input id="s-li"></label><label>X<input id="s-x"></label>
+<label>Google Analytics ID<input id="s-ga" placeholder="G-XXXXXXX"></label>
+<button class="btn btn-primary" type="button" id="b-site">Generate site.json ↓</button></form>
+<div><p class="small muted">Output — paste into <code>data/site.json</code> (keep the outer { }):</p><textarea class="code" id="o-site" readonly></textarea></div></div></div>
+<div class="tabpane" id="pane-projects"><div class="two">
+<form class="fieldset" id="f-proj"><h3>Add a project</h3>
+<label>Project name<input id="p-name" required></label>
+<div class="two"><label>Date<input id="p-date" type="date"></label><label>Location<input id="p-loc" value="Lagos, Nigeria"></label></div>
+<label>Objective<input id="p-obj"></label>
+<div class="two"><label>Beneficiaries<input id="p-ben" type="number" value="50"></label><label>Partners<input id="p-part"></label></div>
+<label>Photo path<input id="p-img" value="assets/project-bootcamp.svg"></label>
+<label>Short description<textarea id="p-desc" rows="2"></textarea></label>
+<label>Results / impact<textarea id="p-res" rows="2"></textarea></label>
+<button class="btn btn-primary" type="button" id="b-proj">Add → preview JSON ↓</button></form>
+<div><p class="small muted">Paste this array into <code>data/projects.json</code> (replaces file):</p><textarea class="code" id="o-proj" readonly></textarea><div id="v-proj" class="grid" style="margin-top:10px"></div></div></div></div>
+<div class="tabpane" id="pane-news"><div class="two">
+<form class="fieldset"><h3>Add news / event</h3>
+<label>Title<input id="n-title"></label><div class="two"><label>Date<input id="n-date" type="date"></label><label>Category<select id="n-cat"><option>News</option><option>Training</option><option>Food Bank</option><option>Partnership</option><option>Success story</option><option>Event</option></select></label></div>
+<label>Excerpt<input id="n-ex"></label><label>Body<textarea id="n-body" rows="4"></textarea></label>
+<button class="btn btn-primary" type="button" id="b-news">Add → preview JSON ↓</button></form>
+<div><textarea class="code" id="o-news" readonly></textarea></div></div></div>
+<div class="tabpane" id="pane-programmes"><div class="two">
+<form class="fieldset"><h3>Add programme</h3>
+<label>Title<input id="g-title"></label><label>Tag<input id="g-tag" value="Skills"></label><label>Summary<input id="g-sum"></label><label>Details<textarea id="g-det" rows="3"></textarea></label>
+<button class="btn btn-primary" type="button" id="b-prog">Add → preview JSON ↓</button></form>
+<div><textarea class="code" id="o-prog" readonly></textarea></div></div></div>
+<div class="tabpane" id="pane-gallery"><div class="two">
+<form class="fieldset"><h3>Add photo</h3>
+<label>Image path<input id="gl-src" value="assets/"></label><label>Caption<input id="gl-cap"></label><label>Programme<select id="gl-prog"><option>Youth Skills & Employability</option><option>Education & Opportunity</option><option>Community Support / Food Bank</option><option>Partnership & Community Development</option></select></label>
+<button class="btn btn-primary" type="button" id="b-gal">Add → preview JSON ↓</button></form>
+<div><textarea class="code" id="o-gal" readonly></textarea></div></div></div>
+<div class="tabpane" id="pane-guide"><div class="card"><h3>How updating works (2 minutes)</h3><p class="small">1. Edit in a tab, click the generate button.<br>2. Select-all the output box, copy.<br>3. Open the matching file in <code>data/</code>, replace everything, save.<br>4. Upload changed files + new photos in <code>assets/</code> to your host (cPanel / Netlify / Vercel).<br><br><b>Photos:</b> phone photos are fine — keep each under ~500KB (use your phone's "medium" share size), landscape works best.<br><b>Videos:</b> upload to YouTube, paste the link in a News post or Gallery caption.<br><b>Forms:</b> launch version opens the visitor's email app (free, no server). Later: create a free Formspree form and paste its URL into <code>js/main.js</code> — ask your developer, 10 minutes.<br><b>Analytics:</b> paste your GA ID in Site tab → appears site-wide.</p></div></div>
+</div></section></main>
+<footer><div class="container foot-note"><span>© AVOLI admin</span><span><a href="../index.html">← Back to site</a></span></div></footer>
+<script>
+const $=id=>document.getElementById(id);
+document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#tabs .chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.tabpane').forEach(p=>p.classList.remove('on'));$('pane-'+b.dataset.t).classList.add('on');});
+document.querySelector('.nav-toggle').onclick=()=>document.querySelector('.main-nav').classList.toggle('open');
+async function j(p){try{const r=await fetch('../data/'+p);return await r.json();}catch{return null;}}
+let projects=[],news=[],progs=[],gallery=[],site=null;
+(async()=>{site=await j('site.json');projects=await j('projects.json')||[];news=await j('news.json')||[];progs=await j('programmes.json')||[];gallery=await j('gallery.json')||[];
+if(site){$('s-email').value=site.org.email||'';$('s-phone').value=site.org.phone||'';$('s-address').value=site.org.address||'';$('s-bank').value=(site.org.bank||{}).bank_name||'';$('s-accname').value=(site.org.bank||{}).account_name||'';$('s-accno').value=(site.org.bank||{}).account_number||'';$('s-ig').value=(site.org.social||{}).instagram||'';$('s-fb').value=(site.org.social||{}).facebook||'';$('s-li').value=(site.org.social||{}).linkedin||'';$('s-x').value=(site.org.social||{}).x||'';$('s-ga').value=(site.analytics||{}).ga_id||'';}
+renderAll();})();
+function renderAll(){$('o-proj').value=JSON.stringify(projects,null,2);$('o-news').value=JSON.stringify(news,null,2);$('o-prog').value=JSON.stringify(progs,null,2);$('o-gal').value=JSON.stringify(gallery,null,2);
+$('v-proj').innerHTML=projects.map(p=>`<div class="card small"><b>${p.name}</b><br>${p.date} • ${p.location} • ${p.beneficiaries} beneficiaries</div>`).join('');}
+$('b-site').onclick=()=>{site.org.email=$('s-email').value;site.org.phone=$('s-phone').value;site.org.address=$('s-address').value;site.org.bank.bank_name=$('s-bank').value;site.org.bank.account_name=$('s-accname').value;site.org.bank.account_number=$('s-accno').value;site.org.social.instagram=$('s-ig').value;site.org.social.facebook=$('s-fb').value;site.org.social.linkedin=$('s-li').value;site.org.social.x=$('s-x').value;site.analytics.ga_id=$('s-ga').value;$('o-site').value=JSON.stringify(site,null,2);};
+$('b-proj').onclick=()=>{projects.unshift({id:(($('p-name').value||'project').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),name:$('p-name').value,date:$('p-date').value,location:$('p-loc').value,objective:$('p-obj').value,beneficiaries:parseInt($('p-ben').value||'0'),partners:$('p-part').value,image:$('p-img').value,description:$('p-desc').value,results:$('p-res').value});renderAll();};
+$('b-news').onclick=()=>{news.unshift({id:(($('n-title').value||'post').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),title:$('n-title').value,date:$('n-date').value,category:$('n-cat').value,image:'assets/news-welcome.svg',excerpt:$('n-ex').value,body:$('n-body').value});renderAll();};
+$('b-prog').onclick=()=>{progs.push({id:(($('g-title').value||'prog').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),title:$('g-title').value,tag:$('g-tag').value,summary:$('g-sum').value,details:$('g-det').value,image:'assets/programme-skills.svg'});renderAll();};
+$('b-gal').onclick=()=>{gallery.push({src:$('gl-src').value,caption:$('gl-cap').value,programme:$('gl-prog').value});renderAll();};
+</script></body></html>
