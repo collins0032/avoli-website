@@ -1,22 +1,39 @@
 <!doctype html><html lang="en-NG"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Donate — AVOLI</title><meta name="description" content="Donate to AVOLI via bank transfer. Sponsor food packs, trainees and community projects."><link rel="icon" href="assets/logo.svg"><link rel="stylesheet" href="css/style.css"></head>
+<title>Donate — AVOLI</title><meta name="description" content="Donate to AVOLI: give a school bag, food pack or training at fixed prices. Bank transfer, QR code and soon online card payment."><link rel="icon" href="assets/logo.svg"><link rel="stylesheet" href="css/style.css"></head>
 <body><header class="site-header"><div class="container header-inner">
 <a class="brand" href="index.html"><img class="brand-mark" src="assets/logo.svg" alt="AVOLI logo"><span class="brand-text"><strong>AVOLI</strong><small>Akinwale Vincent Omoniyi Legacy Initiative</small></span></a>
 <button class="nav-toggle">☰ Menu</button>
 <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="what-we-do.html">What We Do</a></li><li><a href="impact.html">Impact</a></li><li><a href="get-involved.html">Get Involved</a></li><li><a href="news.html">News</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
 <div class="header-ctas"><a class="btn btn-gold btn-small" href="donate.html">Donate</a><a class="btn btn-primary btn-small" href="partner.html">Partner</a></div></div></header>
-<main><div class="page-hero"><div class="container"><div class="breadcrumb"><a href="index.html">Home</a> → Donate</div><h1>Donate to AVOLI</h1><p>Bank transfer today. Online card payment (Paystack/Flutterwave) can be plugged in later — the page is ready for it.</p></div></div>
-<section class="block"><div class="container grid split">
+<main><div class="page-hero"><div class="container"><div class="breadcrumb"><a href="index.html">Home</a> → Donate</div><h1>Donate to AVOLI</h1><p>Pick an item at a fixed price, pay by bank transfer or QR code — and online card payment is switching on soon.</p></div></div>
+<section class="block"><div class="container">
+<div class="pay-band" data-pay-online><div class="card" style="border-color:var(--gold)"><h3 style="margin-top:0">💳 Online card & bank payment — coming soon</h3><p class="small muted" style="margin-bottom:0">We're switching on Paystack/Flutterwave so you can pay in seconds. Meanwhile, please use the gift catalog, bank transfer or QR code below — every naira is receipted.</p></div></div>
+</div></section>
+<section class="block" id="gift-catalog" style="padding-top:0"><div class="container">
+<div class="section-head"><span class="kicker">Gift catalog</span><h2>Give a specific item</h2><p>Fixed prices. Tap <b>Give</b> — the item and amount fill into your confirmation form automatically.</p></div>
+<div class="gift-grid">
+<div class="gift"><div class="emoji">🎒</div><h3>School bag (filled)</h3><div class="price">₦15,000</div><p class="small muted">Bag + books + stationery for one pupil.</p><button class="btn btn-gold btn-small" data-give-item="School bag (filled)" data-give-amount="15000">Give ₦15,000</button></div>
+<div class="gift"><div class="emoji">👟</div><h3>School shoes & socks</h3><div class="price">₦12,000</div><p class="small muted">A pair of shoes + socks for one child.</p><button class="btn btn-gold btn-small" data-give-item="School shoes & socks" data-give-amount="12000">Give ₦12,000</button></div>
+<div class="gift"><div class="emoji">📚</div><h3>Textbooks set</h3><div class="price">₦20,000</div><p class="small muted">Full textbook set for one child, one year.</p><button class="btn btn-gold btn-small" data-give-item="Textbooks set" data-give-amount="20000">Give ₦20,000</button></div>
+<div class="gift"><div class="emoji">🍲</div><h3>Family food pack</h3><div class="price">₦5,000</div><p class="small muted">Dry food + essentials for one family.</p><button class="btn btn-gold btn-small" data-give-item="Family food pack" data-give-amount="5000">Give ₦5,000</button></div>
+<div class="gift"><div class="emoji">🍼</div><h3>Baby essentials kit</h3><div class="price">₦8,000</div><p class="small muted">Diapers, wipes + formula for one baby.</p><button class="btn btn-gold btn-small" data-give-item="Baby essentials kit" data-give-amount="8000">Give ₦8,000</button></div>
+<div class="gift"><div class="emoji">📝</div><h3>School fees support</h3><div class="price">₦30,000</div><p class="small muted">One term's fees for one child.</p><button class="btn btn-gold btn-small" data-give-item="School fees support" data-give-amount="30000">Give ₦30,000</button></div>
+<div class="gift"><div class="emoji">🎓</div><h3>Sponsor one youth training</h3><div class="price">₦25,000</div><p class="small muted">Full employability + HSE training, one youth.</p><button class="btn btn-gold btn-small" data-give-item="Sponsor one youth training" data-give-amount="25000">Give ₦25,000</button></div>
+<div class="gift"><div class="emoji">🏕️</div><h3>Bootcamp session</h3><div class="price">₦150,000</div><p class="small muted">Fund a full cohort training session.</p><button class="btn btn-gold btn-small" data-give-item="Bootcamp session" data-give-amount="150000">Give ₦150,000</button></div>
+</div>
+</div></section>
+<section class="block" style="padding-top:0"><div class="container grid split">
 <div>
 <div class="bank-box"><h3 style="margin-top:0;color:var(--gold)">Bank transfer</h3><div data-bank-details><p>Loading account details…</p></div>
-<p class="small">1. Transfer to the account above.<br>2. Use narration: <code>YOURNAME-PURPOSE</code> (e.g. ADA-FOODBANK).<br>3. Fill the confirmation form → we email you a receipt.</p></div>
-<div class="card" id="sponsor" style="margin-top:12px"><h3>Sponsor a Programme</h3><table class="info"><tr><th>Purpose</th><th>Guide amount</th></tr><tr><td>Family food pack</td><td>₦5,000</td></tr><tr><td>One youth trained</td><td>₦25,000</td></tr><tr><td>Bootcamp session</td><td>₦150,000</td></tr><tr><td>Where most needed</td><td>Any amount</td></tr></table></div>
+<p class="small">1. Transfer to the account above.<br>2. Use narration: <code>YOURNAME-ITEM</code> (e.g. ADA-SCHOOLBAG).<br>3. Fill the confirmation form → we email you a receipt.</p>
+<div class="qr-wrap"><img src="assets/img/donate-qr.png" alt="QR code with AVOLI donation account details" loading="lazy"><p class="small" style="margin:0;flex:1;min-width:180px">📱 <b>Scan to view our account details</b> on your phone — no typing long numbers. QR refreshes when our confirmed account lands.</p></div></div>
 </div>
-<div><form class="fieldset" data-avoli-form data-subject="Donation confirmation — AVOLI"><h3 style="margin:0">Donation confirmation</h3>
+<div><form class="fieldset" data-avoli-form data-donate-form data-subject="Donation confirmation — AVOLI"><h3 style="margin:0">Donation confirmation</h3>
+<p data-picked-note class="success small" hidden style="margin:0">Selected: <b></b> — complete the transfer, then confirm below.</p>
 <label>Full name<input name="name" required></label>
 <label>Email<input name="email" type="email" required></label>
-<label>Amount donated (₦)<input name="amount" required></label>
-<label>Donation purpose<select name="purpose"><option>Where most needed</option><option>Food Bank</option><option>Youth Skills & Employability</option><option>Education & Opportunity</option><option>Sponsor a Programme</option></select></label>
+<label>Amount donated (₦)<input name="amount" inputmode="numeric" required placeholder="e.g. 15000"></label>
+<label>Donation purpose<select name="purpose"><option>Where most needed</option><option>School bag (filled)</option><option>School shoes & socks</option><option>Textbooks set</option><option>Family food pack</option><option>Baby essentials kit</option><option>School fees support</option><option>Sponsor one youth training</option><option>Bootcamp session</option><option>Food Bank</option><option>Youth Skills & Employability</option><option>Education & Opportunity</option><option>Sponsor a Programme</option></select></label>
 <label>Transfer reference / date<textarea name="reference" rows="2" placeholder="e.g. 12 Oct, GTB ref 123456"></textarea></label>
 <button class="btn btn-primary" type="submit">Confirm donation</button>
 <p class="hint">Opens your email app addressed to <span data-org-email>hello@avoli.org.ng</span>. For donation enquiries call <a data-org-phone href="#">us</a>.</p>
