@@ -1,6 +1,6 @@
 /* AVOLI service worker — offline-first for static assets, fresh HTML/data.
    Bump CACHE when shipping structural changes. */
-const CACHE = 'avoli-v1';
+const CACHE = 'avoli-v2';
 const CORE = ['./', './index.html', './css/style.css', './js/main.js', './assets/logo.svg', './icon-192.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
