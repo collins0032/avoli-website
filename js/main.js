@@ -73,4 +73,41 @@
     const ok=f.parentElement.querySelector('[data-form-ok]');if(ok)ok.hidden=false;f.reset();
   });
   document.addEventListener('DOMContentLoaded',hydrate);
+  // Offline support
+  if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
+  // One-click install: first-visit prompt, choice remembered (re-asks 7 days after dismiss)
+  (function(){
+    const KEY='avoli-install';
+    const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch{return{};}};
+    const save=s=>{try{localStorage.setItem(KEY,JSON.stringify(s));}catch{}};
+    const inApp=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
+    if(inApp){save({installed:true,ts:Date.now()});return;}
+    const st=load();
+    if(st.installed)return;
+    if(st.dismissed&&Date.now()-st.dismissed<7*864e5)return;
+    const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent||'');
+    let deferred=null,shown=false;
+    window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;show(false);});
+    window.addEventListener('appinstalled',()=>{save({installed:true,ts:Date.now()});hide();});
+    setTimeout(()=>{if(!shown){if(deferred)show(false);else if(isiOS)show(true);}},2500);
+    function show(ios){
+      if(shown||load().installed)return;shown=true;
+      const bar=document.createElement('div');
+      bar.className='pwa-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-label','Install AVOLI app');
+      bar.innerHTML=`<img src="${document.querySelector('.brand-mark')?'':''}assets/logo.svg" alt="" onerror="this.remove()"><div><strong>${ios?'Add AVOLI to your home screen':'Install the AVOLI app'}</strong><span>${ios?'Tap Share ⬆ then “Add to Home Screen” for one-tap access.':'One tap — opens fast, works offline, no app store needed.'}</span></div><button class="btn btn-gold btn-small" data-pwa-go>${ios?'Got it':'Install'}</button><button class="pwa-x" aria-label="Dismiss">✕</button>`;
+      // fix logo path for /admin/ pages
+      const im=bar.querySelector('img');if(im&&location.pathname.includes('/admin/'))im.src='../assets/logo.svg';
+      document.body.appendChild(bar);document.body.classList.add('pwa-show');
+      bar.querySelector('[data-pwa-go]').addEventListener('click',async()=>{
+        if(deferred){await deferred.prompt();const c=await deferred.userChoice;
+          if(c&&c.outcome==='accepted'){save({installed:true,ts:Date.now()});}
+          else{save({dismissed:Date.now()});}
+          deferred=null;
+        }else{save({dismissed:Date.now()});}
+        hide();
+      });
+      bar.querySelector('.pwa-x').addEventListener('click',()=>{save({dismissed:Date.now()});hide();});
+    }
+    function hide(){const b=document.querySelector('.pwa-bar');if(b)b.remove();document.body.classList.remove('pwa-show');}
+  })();
 })();
