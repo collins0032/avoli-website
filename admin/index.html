@@ -28,7 +28,7 @@
 <div class="two"><label>Date<input id="p-date" type="date"></label><label>Location<input id="p-loc" value="Lagos, Nigeria"></label></div>
 <label>Objective<input id="p-obj"></label>
 <div class="two"><label>Beneficiaries<input id="p-ben" type="number" value="50"></label><label>Partners<input id="p-part"></label></div>
-<label>Photo path<input id="p-img" value="assets/project-bootcamp.svg"></label>
+<label>Photo path<input id="p-img" value="assets/img/project-bootcamp.jpg"></label>
 <label>Short description<textarea id="p-desc" rows="2"></textarea></label>
 <label>Results / impact<textarea id="p-res" rows="2"></textarea></label>
 <button class="btn btn-primary" type="button" id="b-proj">Add → preview JSON ↓</button></form>
@@ -46,7 +46,7 @@
 <div><textarea class="code" id="o-prog" readonly></textarea></div></div></div>
 <div class="tabpane" id="pane-gallery"><div class="two">
 <form class="fieldset"><h3>Add photo</h3>
-<label>Image path<input id="gl-src" value="assets/"></label><label>Caption<input id="gl-cap"></label><label>Programme<select id="gl-prog"><option>Youth Skills & Employability</option><option>Education & Opportunity</option><option>Community Support / Food Bank</option><option>Partnership & Community Development</option></select></label>
+<label>Image path<input id="gl-src" value="assets/img/"></label><label>Caption<input id="gl-cap"></label><label>Programme<select id="gl-prog"><option>Youth Skills & Employability</option><option>Education & Opportunity</option><option>Community Support / Food Bank</option><option>Partnership & Community Development</option></select></label>
 <button class="btn btn-primary" type="button" id="b-gal">Add → preview JSON ↓</button></form>
 <div><textarea class="code" id="o-gal" readonly></textarea></div></div></div>
 <div class="tabpane" id="pane-guide"><div class="card"><h3>How updating works (2 minutes)</h3><p class="small">1. Edit in a tab, click the generate button.<br>2. Select-all the output box, copy.<br>3. Open the matching file in <code>data/</code>, replace everything, save.<br>4. Upload changed files + new photos in <code>assets/</code> to your host (cPanel / Netlify / Vercel).<br><br><b>Photos:</b> phone photos are fine — keep each under ~500KB (use your phone's "medium" share size), landscape works best.<br><b>Videos:</b> upload to YouTube, paste the link in a News post or Gallery caption.<br><b>Forms:</b> launch version opens the visitor's email app (free, no server). Later: create a free Formspree form and paste its URL into <code>js/main.js</code> — ask your developer, 10 minutes.<br><b>Analytics:</b> paste your GA ID in Site tab → appears site-wide.</p></div></div>
@@ -65,7 +65,7 @@ function renderAll(){$('o-proj').value=JSON.stringify(projects,null,2);$('o-news
 $('v-proj').innerHTML=projects.map(p=>`<div class="card small"><b>${p.name}</b><br>${p.date} • ${p.location} • ${p.beneficiaries} beneficiaries</div>`).join('');}
 $('b-site').onclick=()=>{site.org.email=$('s-email').value;site.org.phone=$('s-phone').value;site.org.address=$('s-address').value;site.org.bank.bank_name=$('s-bank').value;site.org.bank.account_name=$('s-accname').value;site.org.bank.account_number=$('s-accno').value;site.org.social.instagram=$('s-ig').value;site.org.social.facebook=$('s-fb').value;site.org.social.linkedin=$('s-li').value;site.org.social.x=$('s-x').value;site.analytics.ga_id=$('s-ga').value;$('o-site').value=JSON.stringify(site,null,2);};
 $('b-proj').onclick=()=>{projects.unshift({id:(($('p-name').value||'project').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),name:$('p-name').value,date:$('p-date').value,location:$('p-loc').value,objective:$('p-obj').value,beneficiaries:parseInt($('p-ben').value||'0'),partners:$('p-part').value,image:$('p-img').value,description:$('p-desc').value,results:$('p-res').value});renderAll();};
-$('b-news').onclick=()=>{news.unshift({id:(($('n-title').value||'post').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),title:$('n-title').value,date:$('n-date').value,category:$('n-cat').value,image:'assets/news-welcome.svg',excerpt:$('n-ex').value,body:$('n-body').value});renderAll();};
-$('b-prog').onclick=()=>{progs.push({id:(($('g-title').value||'prog').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),title:$('g-title').value,tag:$('g-tag').value,summary:$('g-sum').value,details:$('g-det').value,image:'assets/programme-skills.svg'});renderAll();};
+$('b-news').onclick=()=>{news.unshift({id:(($('n-title').value||'post').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),title:$('n-title').value,date:$('n-date').value,category:$('n-cat').value,image:'assets/img/news-welcome.jpg',excerpt:$('n-ex').value,body:$('n-body').value});renderAll();};
+$('b-prog').onclick=()=>{progs.push({id:(($('g-title').value||'prog').toLowerCase().replace(/[^a-z0-9]+/g,'-')).slice(0,40),title:$('g-title').value,tag:$('g-tag').value,summary:$('g-sum').value,details:$('g-det').value,image:'assets/img/prog-skills.jpg'});renderAll();};
 $('b-gal').onclick=()=>{gallery.push({src:$('gl-src').value,caption:$('gl-cap').value,programme:$('gl-prog').value});renderAll();};
 </script></body></html>

@@ -24,13 +24,13 @@
     }
     // Programmes
     const progWrap=document.querySelector('[data-programmes]');
-    if(progWrap){const data=await loadJSON('data/programmes.json');if(data){progWrap.innerHTML=data.map(p=>`<article class="card programme-card"><span class="tag">${p.tag}</span><h3>${p.title}</h3><p>${p.summary}</p><a class="btn btn-outline btn-small" href="what-we-do.html#${p.id}">Learn more</a></article>`).join('');}}
+    if(progWrap){const data=await loadJSON('data/programmes.json');if(data){progWrap.innerHTML=data.map(p=>`<article class="card programme-card"><img loading="lazy" src="${p.image}" alt="${p.title}"><span class="tag">${p.tag}</span><h3>${p.title}</h3><p>${p.summary}</p><a class="btn btn-outline btn-small" href="what-we-do.html#${p.id}">Learn more</a></article>`).join('');}}
     // Projects preview
     const projWrap=document.querySelector('[data-projects]');
     if(projWrap){const data=await loadJSON('data/projects.json');if(data){const lim=projWrap.getAttribute('data-projects')||data.length;projWrap.innerHTML=data.slice(0,parseInt(lim)).map(p=>`<article class="card project-card"><img loading="lazy" src="${p.image}" alt="${p.name}"><div><span class="tag">${p.location} • ${p.date}</span><h3>${p.name}</h3><p>${p.description}</p><div class="meta"><span><b>${p.beneficiaries}</b> beneficiaries</span><span>Partners: <b>${p.partners}</b></span></div><p class="small"><b>Results:</b> ${p.results}</p></div></article>`).join('');}}
     // News preview
     const newsWrap=document.querySelector('[data-news]');
-    if(newsWrap){const data=await loadJSON('data/news.json');if(data){const lim=newsWrap.getAttribute('data-news')||data.length;newsWrap.innerHTML=data.slice(0,parseInt(lim)).map(n=>`<article class="card news-card"><span class="tag">${n.category} • ${n.date}</span><h3>${n.title}</h3><p>${n.excerpt}</p><a href="news.html#${n.id}">Read update →</a></article>`).join('');}}
+    if(newsWrap){const data=await loadJSON('data/news.json');if(data){const lim=newsWrap.getAttribute('data-news')||data.length;newsWrap.innerHTML=data.slice(0,parseInt(lim)).map(n=>`<article class="card news-card"><img loading="lazy" src="${n.image}" alt="${n.title}"><span class="tag">${n.category} • ${n.date}</span><h3>${n.title}</h3><p>${n.excerpt}</p><a href="news.html#${n.id}">Read update →</a></article>`).join('');}}
     // Gallery
     const gWrap=document.querySelector('[data-gallery]');
     if(gWrap){const data=await loadJSON('data/gallery.json');if(data){
